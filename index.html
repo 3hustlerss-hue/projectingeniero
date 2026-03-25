@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ProjectIngeniero - Noticias, hitos histÃ³ricos y datos curiosos de ciencia e ingenierÃ­a en espaÃ±ol." />
+  <meta name="keywords" content="ciencia, ingenierÃ­a, noticias, tecnologÃ­a, fÃ­sica, quÃ­mica, ingenierÃ­a civil, aeroespacial, hitos histÃ³ricos" />
+  <title>ProjectIngeniero | Ciencia e IngenierÃ­a</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #2563eb;
+      --accent-light: #3b82f6;
+      --accent-glow: #60a5fa;
+      --secondary: #1e293b;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --tag-science: #0891b2;
+      --tag-engineering: #7c3aed;
+      --tag-history: #b45309;
+      --tag-curious: #059669;
+      --tag-space: #1d4ed8;
+      --red: #dc2626;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--surface-alt);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ââ TOP BAR ââ */
+    .topbar {
+      background: var(--primary);
+      color: #94a3b8;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 0;
+    }
+    .topbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar a { color: #94a3b8; }
+    .topbar a:hover { color: #fff; }
+    .topbar-date { font-size: 0.72rem; }
+
+    /* ââ HEADER ââ */
+    header {
+      background: var(--primary);
+      border-bottom: 3px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .logo-name span { color: var(--accent-glow); }
+    .logo-tagline {
+      font-size: 0.62rem;
+      color: #64748b;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: #94a3b8;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+    nav a:hover, nav a.active {
+      color: white;
+      background: rgba(37,99,235,0.2);
+    }
+
+    .header-cta {
+      background: var(--accent);
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+    .header-cta:hover { background: var(--accent-light); }
+
+    /* ââ BREAKING NEWS TICKER ââ */
+    .ticker-wrap {
+      background: var(--accent);
+      color: white;
+      display: flex;
+      overflow: hidden;
+    }
+    .ticker-label {
+      background: var(--red);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ticker-content {
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 8px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: ticker 40s linear infinite;
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ââ HERO / FEATURED ââ */
+    .hero {
+      background: var(--primary);
+      padding: 40px 0;
+    }
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+    }
+    .hero-main {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f1f3d 100%);
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .hero-main:hover { transform: translateY(-2px); }
+    .hero-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%);
+    }
+    .hero-main-content { position: relative; z-index: 1; }
+    .hero-main-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80') center/cover no-repeat;
+      opacity: 0.4;
+    }
+
+    .hero-side { display: flex; flex-direction: column; gap: 16px; }
+    .hero-side-card {
+      background: var(--secondary);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .hero-side-card:hover { background: #263548; }
+    .hero-side-thumb {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #334155;
+    }
+
+    /* TAGS */
+    .tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .tag-science   { background: var(--tag-science); }
+    .tag-engineering { background: var(--tag-engineering); }
+    .tag-history   { background: var(--tag-history); }
+    .tag-curious   { background: var(--tag-curious); }
+    .tag-space     { background: var(--tag-space); }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .hero-excerpt {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .hero-meta {
+      font-size: 0.72rem;
+      color: #64748b;
+      display: flex;
+      gap: 12px;
+    }
+
+    .side-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .side-meta { font-size: 0.7rem; color: #64748b; }
+
+    /* ââ ADS BANNER ââ */
+    .ad-banner {
+      max-width: 1280px;
+      margin: 28px auto 0;
+      padding: 0 24px;
+    }
+    .ad-placeholder {
+      background: #f1f5f9;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .ad-placeholder.rect {
+      height: 250px;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ad-placeholder.rect span:first-child { font-size: 1.5rem; }
+
+    /* ââ MAIN CONTENT ââ */
+    .main-wrap {
+      max-width: 1280px;
+      margin: 32px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 32px;
+    }
+
+    /* ââ SECTION HEADER ââ */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-header h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+    }
+    .section-line {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+    }
+    .section-header-accent {
+      width: 4px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ââ ARTICLE GRID ââ */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .article-card {
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .article-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .article-thumb {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+    .article-body { padding: 16px; }
+    .article-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .article-excerpt {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .article-meta {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .article-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-light); }
+
+    /* ââ HORIZONTAL ARTICLE ââ */
+    .article-horiz {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      margin-bottom: 12px;
+    }
+    .article-horiz:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    .article-horiz-thumb {
+      width: 100px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+    .article-horiz-body { flex: 1; }
+    .article-horiz-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .article-horiz-excerpt {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ââ SIDEBAR ââ */
+    .sidebar {}
+
+    .sidebar-widget {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .sidebar-widget h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .widget-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+    }
+
+    /* Trending list */
+    .trending-list { list-style: none; }
+    .trending-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .trending-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .trending-item:hover .trending-title { color: var(--accent); }
+    .trending-num {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #e2e8f0;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 24px;
+    }
+    .trending-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      transition: color 0.15s;
+    }
+    .trending-cat { font-size: 0.68rem; color: var(--text-light); margin-top: 2px; }
+
+    /* Categories */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .cat-item {
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .cat-item:hover { opacity: 0.85; }
+    .cat-ciencia     { background: var(--tag-science); }
+    .cat-ingenieria  { background: var(--tag-engineering); }
+    .cat-historia    { background: var(--tag-history); }
+    .cat-curioso     { background: var(--tag-curious); }
+    .cat-espacio     { background: var(--tag-space); }
+    .cat-tech        { background: #be123c; }
+
+    /* Subscribe */
+    .subscribe-form { display: flex; flex-direction: column; gap: 10px; }
+    .subscribe-form input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .subscribe-form input:focus { border-color: var(--accent); }
+    .subscribe-btn {
+      width: 100%;
+      padding: 10px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .subscribe-btn:hover { background: var(--accent-light); }
+
+    /* Dato del dÃ­a */
+    .dato-card {
+      background: linear-gradient(135deg, #0f172a, #1e3a5f);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .dato-emoji { font-size: 2rem; margin-bottom: 8px; }
+    .dato-text {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .dato-text strong { color: var(--accent-glow); }
+
+    /* ââ HITOS HISTÃRICOS SECTION ââ */
+    .hitos-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 40px 0;
+      margin: 20px 0;
+    }
+    .hitos-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .hitos-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 6px;
+    }
+    .hitos-subtitle {
+      font-size: 0.82rem;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+    .hitos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .hito-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .hito-card:hover {
+      background: rgba(37,99,235,0.15);
+      transform: translateY(-2px);
+    }
+    .hito-year {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent-glow);
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .hito-event {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .hito-desc {
+      font-size: 0.75rem;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* ââ DATOS CURIOSOS STRIP ââ */
+    .curiosos-section {
+      max-width: 1280px;
+      margin: 0 auto 32px;
+      padding: 0 24px;
+    }
+    .curiosos-scroll {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .curioso-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .curioso-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .curioso-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      width: 48px;
+      text-align: center;
+    }
+    .curioso-body {}
+    .curioso-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .curioso-text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ââ FOOTER ââ */
+    footer {
+      background: var(--primary);
+      color: #94a3b8;
+      padding: 40px 0 20px;
+      margin-top: 40px;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .footer-brand {}
+    .footer-logo-text {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+    }
+    .footer-logo-text span { color: var(--accent-glow); }
+    .footer-desc {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+    .footer-col h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a {
+      font-size: 0.78rem;
+      color: #64748b;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: #e2e8f0; }
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: #475569;
+    }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      color: #94a3b8;
+    }
+    .social-btn:hover { background: var(--accent); color: white; }
+
+    /* ââ READ MORE BTN ââ */
+    .load-more {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .load-more:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(37,99,235,0.04);
+    }
+
+    /* ââ RESPONSIVE ââ */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-side { display: none; }
+      .main-wrap { grid-template-columns: 1fr; }
+      .hitos-grid { grid-template-columns: repeat(2, 1fr); }
+      .curiosos-scroll { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      nav { display: none; }
+    }
+    @media (max-width: 600px) {
+      .articles-grid { grid-template-columns: 1fr; }
+      .hitos-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span class="topbar-date" id="fecha-top">MiÃ©rcoles, 25 de marzo de 2026</span>
+      <span>Ciencia Â· IngenierÃ­a Â· TecnologÃ­a Â· Historia Â· Curiosidades</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-icon">PI</div>
+        <div class="logo-text">
+          <span class="logo-name">Project<span>Ingeniero</span></span>
+          <span class="logo-tagline">Ciencia e IngenierÃ­a en espaÃ±ol</span>
+        </div>
+      </a>
+      <nav>
+        <a href="#noticias" class="active">Noticias</a>
+        <a href="#hitos">Hitos HistÃ³ricos</a>
+        <a href="#curiosidades">Curiosidades</a>
+        <a href="#ingenieria">IngenierÃ­a</a>
+        <a href="#ciencia">Ciencia</a>
+        <a href="#espacio">Espacio</a>
+      </nav>
+      <a href="#suscribirse" class="header-cta">Suscribirse</a>
+    </div>
+  </header>
+
+  <!-- BREAKING NEWS TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-label">ð´ Ãltima Hora</div>
+    <div class="ticker-content">
+      &nbsp;&nbsp;&nbsp;âï¸ CientÃ­ficos logran nuevo rÃ©cord de fusiÃ³n nuclear sostenida durante 8 minutos en Francia &nbsp;Â·&nbsp;
+      ð La NASA confirma la presencia de agua lÃ­quida subsuperficial en la luna Europa de JÃºpiter &nbsp;Â·&nbsp;
+      ð§¬ Primer tratamiento de ediciÃ³n gÃ¬nica CRISPR aprobado en EspaÃ±a para una enfermedad rara &nbsp;Â·&nbsp;
+      ð¡ï¸ El aÃ±o 2025 fue el mÃ¡s caluroso registrado en la historia, confirma la OMM &nbsp;Â·&nbsp;
+      ð¤ Nueva IA diseÃ±a molÃ©culas medicamentosas en horas, reduciendo aÃ±os de investigaciÃ³n &nbsp;Â·&nbsp;
+      ð¸ SpaceX anuncia fecha para primer vuelo tripulado a la Ã³rbita lunar en 2027
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <div class="hero-main-bg"></div>
+        <div class="hero-main-content">
+          <span class="tag tag-space">Espacio</span>
+          <h1 class="hero-title">La NASA detecta seÃ±ales inequÃ­vocas de actividad geolÃ³gica activa en Europa, la luna de JÃºpiter</h1>
+          <p class="hero-excerpt">Nuevos datos del telescopio James Webb revelan emisiones de vapor de agua y calor interno que podrÃ­an sostener vida microbiana bajo el ocÃ©ano helado de Europa. Un hallazgo que cambia las reglas del juego en la bÃºsqueda de vida extraterrestre.</p>
+          <div class="hero-meta">
+            <span>Por RedacciÃ³n PI</span>
+            <span>Â·</span>
+            <span>25 de marzo, 2026</span>
+            <span>Â·</span>
+            <span>6 min de lectura</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-side-card">
+          <div class="hero-side-thumb" style="background:linear-gradient(135deg,#312e81,#4c1d95);display:flex;align-items:center;justify-content:center;font-size:1.6rem;">â¡</div>
+          <div>
+            <span class="tag tag-engineering" style="margin-bottom:4px;">IngenierÃ­a</span>
+            <div class="side-title">La baterÃ­a de estado sÃ³lido que promete recargar un coche elÃ©ctrico en 5 minutos</div>
+            <div class="side-meta">23 mar 2026 Â· 4 min</div>
+          </div>
+        </div>
+        <div class="hero-side-card">
+          <div class="hero-side-thumb" style="background:linear-gradient(135deg,#064e3b,#065f46);display:flex;align-items:center;justify-content:center;font-size:1.6rem;">ð§¬</div>
+          <div>
+            <span class="tag tag-science" style="margin-bottom:4px;">Biociencia</span>
+            <div class="side-title">Investigadores imprimen tejido cardÃ­aco funcional con cÃ©lulas del propio paciente</div>
+            <div class="side-meta">22 mar 2026 Â· 5 min</div>
+          </div>
+        </div>
+        <div class="hero-side-card">
+          <div class="hero-side-thumb" style="background:linear-gradient(135deg,#7c2d12,#9a3412);display:flex;align-items:center;justify-content:center;font-size:1.6rem;">âï¸</div>
+          <div>
+            <span class="tag tag-history" style="margin-bottom:4px;">Historia</span>
+            <div class="side-title">El gran secreto de los acueductos romanos: tÃ©cnicas que superan al hormigÃ³n moderno</div>
+            <div class="side-meta">21 mar 2026 Â· 7 min</div>
+          </div>
+        </div>
+        <div class="hero-side-card">
+          <div class="hero-side-thumb" style="background:linear-gradient(135deg,#1e3a5f,#0c2a4a);display:flex;align-items:center;justify-content:center;font-size:1.6rem;">ð</div>
+          <div>
+            <span class="tag tag-curious" style="margin-bottom:4px;">Dato Curioso</span>
+            <div class="side-title">El sonido del ocÃ©ano: por quÃ© las ballenas jorobadas componen canciones cada aÃ±o</div>
+            <div class="side-meta">20 mar 2026 Â· 3 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD BANNER 728x90 -->
+  <div class="ad-banner">
+    <!-- Google AdSense: reemplaza este bloque con tu cÃ³digo de anuncio -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto"></ins> -->
+    <div class="ad-placeholder">ð¢ Publicidad â Espacio para Google AdSense (728Ã90)</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-wrap">
+
+    <!-- LEFT COLUMN -->
+    <main>
+
+      <!-- ÃLTIMAS NOTICIAS -->
+      <section id="noticias">
+        <div class="section-header">
+          <div class="section-header-accent"></div>
+          <h2>Ãltimas Noticias</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="articles-grid">
+
+          <div class="article-card">
+            <div class="article-thumb">ð</div>
+            <div class="article-body">
+              <span class="tag tag-engineering">IngenierÃ­a</span>
+              <h3 class="article-title">El nuevo superconductor que funciona a temperatura ambiente revoluciona la electrÃ³nica</h3>
+              <p class="article-excerpt">Un equipo del MIT ha sintetizado un material superconductor que opera a 22Â°C y presiÃ³n ambiente, lo que podrÃ­a eliminar las pÃ©rdidas energÃ©ticas en cables elÃ©ctricos y transformar la computaciÃ³n cuÃ¡ntica.</p>
+              <div class="article-meta">
+                <span>25 mar 2026</span>
+                <div class="article-meta-dot"></div>
+                <span>5 min lectura</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="article-thumb">ð¤</div>
+            <div class="article-body">
+              <span class="tag tag-science">Ciencia</span>
+              <h3 class="article-title">IA diseÃ±a en 48 horas un catalizador que reduce emisiones de COâ en un 94%</h3>
+              <p class="article-excerpt">Investigadores de DeepMind y el Instituto Max Planck han colaborado para entrenar un modelo de inteligencia artificial capaz de predecir y sintetizar catalizadores moleculares con una eficiencia sin precedentes.</p>
+              <div class="article-meta">
+                <span>24 mar 2026</span>
+                <div class="article-meta-dot"></div>
+                <span>4 min lectura</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="article-thumb">ð</div>
+            <div class="article-body">
+              <span class="tag tag-curious">Curiosidades</span>
+              <h3 class="article-title">Â¿Por quÃ© los terremotos se propagan mÃ¡s rÃ¡pido por la corteza oceÃ¡nica?</h3>
+              <p class="article-excerpt">La densidad y composiciÃ³n mineralÃ³gica de la corteza oceÃ¡nica hace que las ondas sÃ­smicas viajen hasta un 15% mÃ¡s rÃ¡pido que por la corteza continental. Te explicamos la fÃ­sica detrÃ¡s de este fenÃ³meno.</p>
+              <div class="article-meta">
+                <span>23 mar 2026</span>
+                <div class="article-meta-dot"></div>
+                <span>3 min lectura</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="article-thumb">ð§²</div>
+            <div class="article-body">
+              <span class="tag tag-space">Espacio</span>
+              <h3 class="article-title">El motor de plasma que podrÃ­a llevar a humanos a Marte en solo 39 dÃ­as</h3>
+              <p class="article-excerpt">Ad Astra Rocket Company prueba con Ã©xito el motor VASIMR en condiciones de vacÃ­o. Con 200 kW de potencia, la propulsiÃ³n de plasma magnetizado podrÃ­a reducir drasticamente los viajes interplanetarios.</p>
+              <div class="article-meta">
+                <span>22 mar 2026</span>
+                <div class="article-meta-dot"></div>
+                <span>6 min lectura</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- AD INLINE -->
+        <div class="ad-placeholder" style="margin-bottom:24px;border-radius:10px;">ð¢ Publicidad â Google AdSense (320Ã100)</div>
+
+        <!-- MÃS NOTICIAS HORIZONTAL -->
+        <div class="section-header">
+          <div class="section-header-accent" style="background:var(--tag-engineering)"></div>
+          <h2>IngenierÃ­a &amp; TecnologÃ­a</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div id="ingenieria">
+          <div class="article-horiz">
+            <div class="article-horiz-thumb">ðï¸</div>
+            <div class="article-horiz-body">
+              <span class="tag tag-engineering" style="margin-bottom:6px;">Civil</span>
+              <h3 class="article-horiz-title">El puente mÃ¡s largo del mundo sin juntas de expansiÃ³n: el secreto del acero autoreparable</h3>
+              <p class="article-horiz-excerpt">Ingenieros japoneses han desarrollado un aleaciÃ³n de acero que cicatriza sus propias microfisuras mediante nanopartÃ­culas activadas por calor, alargando la vida Ãºtil de estructuras al doble.</p>
+              <div class="article-meta" style="margin-top:6px;">
+                <span>21 mar 2026</span><div class="article-meta-dot"></div><span>5 min</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-horiz">
+            <div class="article-horiz-thumb">ð»</div>
+            <div class="article-horiz-body">
+              <span class="tag tag-engineering" style="margin-bottom:6px;">ComputaciÃ³n</span>
+              <h3 class="article-horiz-title">IBM presenta el primer procesador cuÃ¡ntico de 2000 qubits con tasa de error por debajo del 0.001%</h3>
+              <p class="article-horiz-excerpt">El Heron 2000 rompe todos los rÃ©cords anteriores de fidelidad cuÃ¡ntica y abre la puerta a la supremacÃ­a cuÃ¡ntica prÃ¡ctica en quÃ­mica molecular y criptografÃ­a.</p>
+              <div class="article-meta" style="margin-top:6px;">
+                <span>20 mar 2026</span><div class="article-meta-dot"></div><span>7 min</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-horiz">
+            <div class="article-horiz-thumb">â¡</div>
+            <div class="article-horiz-body">
+              <span class="tag tag-engineering" style="margin-bottom:6px;">EnergÃ­a</span>
+              <h3 class="article-horiz-title">China inaugura la mayor central de fusiÃ³n nuclear experimental del mundo en Chengdu</h3>
+              <p class="article-horiz-excerpt">El reactor EAST-Pro genera 500 MW de potencia durante rÃ¡fagas de 10 minutos, acercÃ¡ndose al umbral de viabilidad comercial de la fusiÃ³n. Europa y EE.UU. aceleran sus propios programas en respuesta.</p>
+              <div class="article-meta" style="margin-top:6px;">
+                <span>19 mar 2026</span><div class="article-meta-dot"></div><span>8 min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="load-more">Ver mÃ¡s artÃ­culos de IngenierÃ­a â</button>
+
+        <!-- CIENCIA -->
+        <div id="ciencia" style="margin-top:32px;">
+          <div class="section-header">
+            <div class="section-header-accent" style="background:var(--tag-science)"></div>
+            <h2>Ciencia</h2>
+            <div class="section-line"></div>
+          </div>
+
+          <div class="article-horiz">
+            <div class="article-horiz-thumb">ð§¬</div>
+            <div class="article-horiz-body">
+              <span class="tag tag-science" style="margin-bottom:6px;">BiologÃ­a</span>
+              <h3 class="article-horiz-title">Descubren un mecanismo celular que podrÃ­a detener el envejecimiento en mamÃ­feros</h3>
+              <p class="article-horiz-excerpt">CientÃ­ficos del Instituto Salk identifican la proteÃ­na GATA4 como reguladora maestra de la senescencia celular. En ratones, su inhibiciÃ³n selectiva revirtiÃ³ marcadores de edad en hÃ­gado y mÃºsculo cardÃ­aco en un 40%.</p>
+              <div class="article-meta" style="margin-top:6px;">
+                <span>24 mar 2026</span><div class="article-meta-dot"></div><span>6 min</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-horiz">
+            <div class="article-horiz-thumb">âï¸</div>
+            <div class="article-horiz-body">
+              <span class="tag tag-science" style="margin-bottom:6px;">FÃ­sica</span>
+              <h3 class="article-horiz-title">El experimento que podrÃ­a confirmar la existencia de dimensiones adicionales en el LHC</h3>
+              <p class="article-horiz-excerpt">El nuevo detector ATLAS-X del CERN ha registrado anomalÃ­as en colisiones de alta energÃ­a compatibles con la teorÃ­a de dimensiones enrolladas de Randall-Sundrum. Los fÃ­sicos teÃ³ricos estÃ¡n eufÃ³ricos.</p>
+              <div class="article-meta" style="margin-top:6px;">
+                <span>22 mar 2026</span><div class="article-meta-dot"></div><span>9 min</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="load-more">Ver mÃ¡s artÃ­culos de Ciencia â</button>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <!-- Trending -->
+      <div class="sidebar-widget">
+        <h3><div class="widget-icon" style="font-size:0.7rem;">ð¥</div> Lo mÃ¡s leÃ­do</h3>
+        <ul class="trending-list">
+          <li class="trending-item">
+            <div class="trending-num">01</div>
+            <div>
+              <div class="trending-title">El experimento que demuestra que el tiempo pasa mÃ¡s rÃ¡pido en las montaÃ±as</div>
+              <div class="trending-cat">FÃ­sica Â· 15K lecturas</div>
+            </div>
+          </li>
+          <li class="trending-item">
+            <div class="trending-num">02</div>
+            <div>
+              <div class="trending-title">CÃ³mo funciona un motor de cohete de manera absolutamente simple</div>
+              <div class="trending-cat">IngenierÃ­a Â· 12K lecturas</div>
+            </div>
+          </li>
+          <li class="trending-item">
+            <div class="trending-num">03</div>
+            <div>
+              <div class="trending-title">La historia olvidada de Hedy Lamarr, la actriz que inventÃ³ el WiFi</div>
+              <div class="trending-cat">Historia Â· 10K lecturas</div>
+            </div>
+          </li>
+          <li class="trending-item">
+            <div class="trending-num">04</div>
+            <div>
+              <div class="trending-title">Â«QuÃ© tan grande es el universo observable? Una comparativa visual</div>
+              <div class="trending-cat">Espacio Â· 9K lecturas</div>
+            </div>
+          </li>
+          <li class="trending-item">
+            <div class="trending-num">05</div>
+            <div>
+              <div class="trending-title">El hormigÃ³n lomano lleva 2000 aÃ±os endureciÃ©ndose: por quÃ© el nuestro no</div>
+              <div class="trending-cat">Materiales Â· 8K lecturas</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="ad-placeholder rect"><span>ð¢</span><span>Google AdSense<br>300Ã250</span></div>
+      <div class="sidebar-widget">
+        <h3><div class="widget-icon" style="font-size:0.7rem;">ð¡</div> Dato del DÃ­a</h3>
+        <div class="dato-card">
+          <div class="dato-emoji">ð¡ï¸</div>
+          <p class="dato-text">La temperatura en el centro del Sol es de aproximadamente <strong>15 millones de grados Celsius</strong>, pero su superficie es de "solo" 5.500Â°C. La corona exterior, paradÃ³jicamente, alcanza <strong>1-3 millones de grados</strong>. Este misterio sigue sin resolverse del todo.</p>
+        </div>
+      </div>
+      <div class="sidebar-widget">
+        <h3><div class="widget-icon" style="font-size:0.6rem;">ð</div> CategorÃ­as</h3>
+        <div class="cat-grid">
+          <div class="cat-item cat-ciencia">âï¸ Ciencia</div>
+          <div class="cat-item cat-ingenieria">âï¸ IngenierÃ­a</div>
+          <div class="cat-item cat-historia">ð Historia</div>
+          <div class="cat-item cat-curioso">ð¤ Curiosidades</div>
+          <div class="cat-item cat-espacio">ð Espacio</div>
+          <div class="cat-item cat-tech">ð» TecnologÃ­a</div>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-widget" id="suscribirse">
+        <h3><div class="widget-icon" style="font-size:0.6rem;">ð¬</div> Newsletter Semanal</h3>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;">Recibe cada lunes las mejores noticias de ciencia e ingenierÃ­a directamente en tu correo. Sin spam.</p>
+        <div class="subscribe-form">
+          <input type="text" placeholder="Tu nombre" />
+          <input type="email" placeholder="tu@email.com" />
+          <button class="subscribe-btn">Suscribirme gratis â</button>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- HITOS HISTÃRICOS -->
+  <section class="hitos-section" id="hitos">
+    <div class="hitos-inner">
+      <h2 class="hitos-title">Hitos HistÃ³ricos de la Ciencia e IngenierÃ­a</h2>
+      <p class="hitos-subtitle">Los momentos que cambiaron el rumbo de la humanidad</p>
+      <div class="hitos-grid">
+        <div class="hito-card">
+          <div class="hito-year">1687</div>
+          <div class="hito-event">Ley de GravitaciÃ³n Universal</div>
+          <div class="hito-desc">Isaac Newton publica los Principia Mathematica, unificando la mecÃ¡nica terrestre y celeste bajo una sola ecuaciÃ³n elegante que dominarÃ­a la fÃ­sica durante 230 aÃ±os.</div>
+        </div>
+        <div class="hito-card">
+          <div class="hito-year">1879</div>
+          <div class="hito-event">La bombilla incandescente prÃ¡ctica</div>
+          <div class="hito-desc">Thomas Edison desarrolla el filamento de carbÃ³n que dura 1200 horas. MÃ¡s allÃ¡ de la bombilla, crea el primer sistema de distribuciÃ³n elÃ©ctrica comercial en Manhattan.</div>
+        </div>
+        <div class="hito-card">
+          <div class="hito-year">1928</div>
+          <div class="hito-event">Descubrimiento de la Penicilina</div>
+          <div class="hito-desc">Alexander Fleming observa que el moho Penicillium notatum destruye bacterias en su plato de Petri. Un accidente que salvarÃ­a mÃ¡s de 200 millones de vidas en el siglo XX.</div>
+        </div>
+        <div class="hito-card">
+          <div class="hito-year">1969</div>
+          <div class="hito-event">El ser humano pisa la Luna</div>
+          <div class="hito-desc">Neil Armstrong y Buzz Aldrin aterrizan en el Mar de la Tranquilidad. El Saturn V, de 111 metros, sigue siendo el cohete mÃ¡s potente jamÃ¡s operado con Ã©xito.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATOS CURIOSOS -->
+  <section class="curiosos-section" id="curiosidades">
+    <div style="margin: 32px 0 20px;">
+      <div class="section-header">
+        <div class="section-header-accent" style="background:var(--tag-curious)"></div>
+        <h2>Datos Curiosos</h2>
+        <div class="section-line"></div>
+      </div>
+    </div>
+    <div class="curiosos-scroll">
+      <div class="curioso-card">
+        <div class="curioso-icon">ð</div>
+        <div class="curioso-body">
+          <div class="curioso-title">Los pulpos tienen tres corazones y sangre azul</div>
+          <div class="curioso-text">Utilizan hemocianina, una proteÃ­na con cobre, en lugar de hemoglobina con hierro. Esta adaptaciÃ³n les permite sobrevivir en aguas frÃ­as y con poco oxÃ­geno como las profundidades oceÃ¡nicas.</div>
+        </div>
+      </div>
+      <div class="curioso-card">
+        <div class="curioso-icon">â¡</div>
+        <div class="curioso-body">
+          <div class="curioso-title">Un rayo contiene unos 5.000 millones de julios de energÃ­a</div>
+          <div class="curioso-text">Pero se descarga en microsegundos. La potencia instantÃ¡nea puede superar el teravatio, aunque la energÃ­a total equivale a apenas encender una bombilla de 60W durante un mes.</div>
+        </div>
+      </div>
+      <div class="curioso-card">
+        <div class="curioso-icon">ð</div>
+        <div class="curioso-body">
+          <div class="curioso-title">La Tierra no es perfectamente esfÃ©rica: es un geoide achatado</div>
+          <div class="curioso-text">El radio ecuatorial es 21 km mayor que el polar debido a la fuerza centrÃ­fuga de la rotaciÃ³n. El punto mÃ¡s alejado del centro terrestre no es el Everest, sino el volcÃ¡n Chimborazo en Ecuador.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo-text">Project<span>Ingeniero</span></div>
+          <p class="footer-desc">Tu portal de referencia en espaÃ±ol para noticias de ciencia e ingenierÃ­a, hitos histÃ³ricos y datos curiosos del mundo de la tecnologÃ­a y el conocimiento humano.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Secciones</h4>
+          <ul class="footer-links">
+            <li><a href="#noticias">Ãltimas Noticias</a></li>
+            <li><a href="#hitos">Hitos HistÃ³ricos</a></li>
+            <li><a href="#curiosidades">Datos Curiosos</a></li>
+            <li><a href="#ingenieria">IngenierÃ­a</a></li>
+            <li><a href="#ciencia">Ciencia</a></li>
+            <li><a href="#espacio">Espacio</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>TemÃ¡ticas</h4>
+          <ul class="footer-links">
+            <li><a href="#">FÃ­sica</a></li>
+            <li><a href="#">QuÃ­mica</a></li>
+            <li><a href="#">BiologÃ­a</a></li>
+            <li><a href="#">MatemÃ¡ticas</a></li>
+            <li><a href="#">AstrofÃ­sica</a></li>
+            <li><a href="#">RobÃ³tica</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Acerca de</h4>
+          <ul class="footer-links">
+            <li><a href="#">Sobre nosotros</a></li>
+            <li><a href="#">PolÃ­tica de privacidad</a></li>
+            <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">PolÃ­tica de cookies</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Publicidad</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Â© 2026 ProjectIngeniero Â· Todos los derechos reservados</span>
+        <div class="footer-social">
+          <div class="social-btn" title="Twitter/X">ð</div>
+          <div class="social-btn" title="Instagram">ð·</div>
+          <div class="social-btn" title="YouTube">â¶</div>
+          <div class="social-btn" title="Telegram">â</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fecha dinÃ¡mica en espaÃ±ol
+    (function() {
+      const dias = ['Domingo','Lunes','Martes','MiÃ©rcoles','Jueves','Viernes','SÃ¡bado'];
+      const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+      const d = new Date();
+      const str = `${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]} de ${d.getFullYear()}`;
+      const el = document.getElementById('fecha-top');
+      if (el) el.textContent = str;
+    })();
+
+    // Nav active link on scroll
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    });
+
+    // Load more placeholder
+    document.querySelectorAll('.load-more').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.textContent = 'â Se publicarÃ¡n mÃ¡s artÃ­culos prÃ³ximamente';
+        btn.style.color = 'var(--tag-curious)';
+        btn.style.borderColor = 'var(--tag-curious)';
+        btn.disabled = true;
+      });
+    });
+  </script>
+
+</body>
+</html>
